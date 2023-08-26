@@ -1,0 +1,183 @@
+Code:
+
+
+import java.util.Scanner;
+
+class CustomerAccount1 {
+    private String name;
+    private String accountNumber;
+    private Double balance;
+
+    public CustomerAccount1(String name, String accountNumber) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.balance = 0.0;
+    }
+
+    public void deposit(Double amount) {
+        if (amount > 0) {
+            this.balance += amount;
+            System.out.printf("Deposited %.2f successfully.%n", amount);
+        } else {
+            System.out.println("Invalid deposit amount. Please enter a positive value.");
+        }
+    }
+
+    public void withdraw(Double amount) {
+        if (amount > 0) {
+            if (this.balance >= amount) {
+                this.balance -= amount;
+                System.out.printf("Withdrawn %.2f successfully.%n", amount);
+            } else {
+                System.out.println("Insufficient balance.");
+            }
+        } else {
+            System.out.println("Invalid withdrawal amount. Please enter a positive value.");
+        }
+    }
+
+    public void displayBalance() {
+        System.out.printf("Account Balance for %s (Account Number: %s): %.2f%n", this.name, this.accountNumber, this.balance);
+    }
+}
+
+public class CustomerAccountMain {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Customer Name: ");
+        String customerName = scanner.nextLine();
+
+        System.out.print("Enter Account Number: ");
+        String accountNumber = scanner.nextLine();
+
+        CustomerAccount1 customer = new CustomerAccount1(customerName, accountNumber);
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1) Deposit");
+            System.out.println("2) Withdraw");
+            System.out.println("3) Display Balance");
+            System.out.println("4) Exit");
+
+            System.out.print("Enter your choice (1/2/3/4): ");
+            String choice = scanner.nextLine();
+
+            if (choice.equals("1")) {
+                System.out.print("Enter the amount to deposit: ");
+                double amount = scanner.nextDouble();
+                scanner.nextLine(); // consume the newline character
+                customer.deposit(amount);
+            } else if (choice.equals("2")) {
+                System.out.print("Enter the amount to withdraw: ");
+                double amount = scanner.nextDouble();
+                scanner.nextLine(); // consume the newline character
+                customer.withdraw(amount);
+            } else if (choice.equals("3")) {
+                customer.displayBalance();
+            } else if (choice.equals("4")) {
+                System.out.println("Exiting the program.");
+                break;
+            } else {
+                System.out.println("Invalid choice. Please try again.");
+            }
+        }
+
+        scanner.close();
+    }
+}
+
+
+
+Output:
+
+C:\Users\Pratham>cd\
+
+C:\>cd C:\JAVAAAAA
+
+C:\JAVAAAAA>javac CustomerAccountMain.java
+
+C:\JAVAAAAA>java CustomerAccountMain
+Enter Customer Name: Pratham Panchal
+Enter Account Number: 16010422185
+
+Menu:
+1) Deposit
+2) Withdraw
+3) Display Balance
+4) Exit
+Enter your choice (1/2/3/4): 1
+Enter the amount to deposit: 29000
+Deposited 29000.00 successfully.
+
+Menu:
+1) Deposit
+2) Withdraw
+3) Display Balance
+4) Exit
+Enter your choice (1/2/3/4): 2
+Enter the amount to withdraw: 19000
+Withdrawn 19000.00 successfully.
+
+Menu:
+1) Deposit
+2) Withdraw
+3) Display Balance
+4) Exit
+Enter your choice (1/2/3/4): 3
+Account Balance for Pratham Panchal (Account Number: 16010422185): 10000.00
+
+Menu:
+1) Deposit
+2) Withdraw
+3) Display Balance
+4) Exit
+Enter your choice (1/2/3/4): 4
+Exiting the program.
+
+
+
+Questions:
+1. Explain the constructors in java with appropriate example?
+-Java has special methods in a class called constructors that are responsible for initializing the state of the object when the class is instantiated. The constructor has the same name as the class and has no return type, not even null. If an object is created with another keyword, it is simply invoked.
+There are two types of constructors i)Default Constructor which doesnt take any arguments and ii)Parameterized Constructor takes one or more arguments
+
+Example is :-
+class Main {
+  private String name;
+
+  // constructor
+  Main() {
+    System.out.println("Constructor Called:");
+    name = "Programiz";
+  }
+
+  public static void main(String[] args) {
+
+    // constructor is invoked while
+    // creating an object of the Main class
+    Main obj = new Main();
+    System.out.println("The name is " + obj.name);
+  }
+}
+
+
+Output:
+
+C:\JAVAAAAA>javac Main.java
+
+C:\JAVAAAAA>java Main
+Constructor example
+The name is Pratham
+
+
+
+
+
+In the above example, we have created a constructor named Main(). Inside the constructor, we are initializing the value of the name variable.Here, when the object is created, the Main() constructor is called. And, the value of the name variable is initialized.
+
+Hence, the program prints the value of the name variables as Pratham.
+
+Conclusion:-
+
+We learnt and utilized basics of object oriented programming in java language.

@@ -1,0 +1,123 @@
+<Pratham Panchal>
+<16010422185>
+<B3>
+<2023>
+
+Code:
+
+import java.util.Scanner;
+
+class student{
+    Scanner in=new Scanner(System.in);
+    String rollnumber;
+    int i=0;
+    public void get_rollnumber(){
+        System.out.println("Enter rollnumber : ");
+        rollnumber=in.nextLine();
+    }
+    public void put_rollnumber(){
+        System.out.println("Rollnumber              : "+rollnumber);
+    }
+}
+class Test extends student{
+    Scanner in=new Scanner(System.in);
+    int[] marks=new int[3];
+    public void get_marks(){
+        System.out.println("Enter marks in DAM,DS,DCN : ");
+        for(i=0;i<marks.length;i++){
+            marks[i]=in.nextInt();
+            in.nextLine();
+        }
+    }
+    public void put_marks(){
+        for(i=1;i<=marks.length;i++){
+            System.out.println("Marks in sub "+i+ " are      : "+marks[i-1]);      
+        }
+    }
+}
+interface sports{
+
+    int bonus_marks=5;
+    void put_bonus();
+
+}
+class result extends Test implements sports {
+    int total=0;
+    public void put_bonus(){
+        System.out.println("Bonus marks awarded are : "+bonus_marks);
+}
+    void display(){
+        get_rollnumber();
+        get_marks();
+        put_rollnumber();
+        put_marks();
+        put_bonus();
+        for (int i = 0; i < marks.length; i++) {
+            total=total+marks[i];
+        }
+        total=total+bonus_marks;
+        System.out.println("Total marks are         : "+total);
+    }
+}
+
+class javaexp4{
+    public static void main(String[] args){
+        result student1=new result();
+        student1.display();
+        
+    } 
+                   
+
+}
+
+Output:
+
+C:\JAVAAAAA>java javaexp4
+Enter rollnumber :
+16010422185
+Enter marks in DAM,DS,DCN :
+99
+99
+100
+Rollnumber              : 16010422185
+Marks in sub 1 are      : 99
+Marks in sub 2 are      : 99
+Marks in sub 3 are      : 100
+Bonus marks awarded are : 5
+Total marks are         : 303
+
+Post lab)
+Q1) What is the purpose of ‘extends’ and ‘implements’ keywords?
+
+Extends Keyword:
+
+Purpose: The extends keyword is used to create a subclass or a derived class that inherits properties and behaviors (fields and methods) from another class, known as the superclass or parent class.
+Usage: You use extends in a class declaration to indicate which class it is inheriting from.
+
+Implements Keyword:
+
+Purpose: The implements keyword is used to declare that a class is going to provide implementations for the methods declared in one or more interfaces.
+Usage: You use implements in a class declaration to specify the interfaces the class is implementing.
+Student
+
+Class diagram:
+
+      Student
+        / \
+   ______|
+  |
+  |
+Test               Sports
+ / \                / \
+  |                  
+  |                  |
+  |                  
+  |                  |
+  |                  
+  |________ _ _ _ _ _|                  
+  	   |
+	Result
+
+
+
+Conclusion: In this experiment we have learnt to implement interfaces in classes .

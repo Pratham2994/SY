@@ -1,0 +1,243 @@
+Pratham
+16010422185
+B3
+2023-24
+
+CODE:
+
+import java.util.Scanner;
+
+abstract class Shape {
+    Float height;
+    Float base;
+
+    public void get_data(Float base1, Float height1) {
+        this.height = height1;
+        this.base = base1;
+    }
+
+    abstract void Display_area();
+}
+
+class Rectangle extends Shape {
+    public void Display_area() {
+        Float area = base * height;
+        System.out.println("Area of the rectangle is" +area);
+    }
+}
+
+class Triangle extends Shape {
+    public void Display_area() {
+        Float area = 0.5f * base * height;
+        System.out.println("Area of the triangle is" +area);
+    }
+}
+
+public class EXP3 {
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("Which shape:\n1) Rectangle\n2) Triangle\n3) Exit");
+            int choice = input.nextInt();
+            input.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter the length and breadth");
+                    Float len = input.nextFloat();
+                    Float breadth = input.nextFloat();
+                    Rectangle rectangle = new Rectangle();
+                    rectangle.get_data(len, breadth);
+                    rectangle.Display_area();
+                    break;
+                case 2:
+                    System.out.println("Enter the base and height");
+                    Float base = input.nextFloat();
+                    Float height = input.nextFloat();
+                    Triangle triangle = new Triangle();
+                    triangle.get_data(base, height);
+                    triangle.Display_area();
+                    break;
+                default:
+                    return;
+            }
+        }
+    }
+}
+
+OUTPUT:
+C:\Users\Student.16DITB110-26\Documents\java>javac EXP3.java
+
+C:\Users\Student.16DITB110-26\Documents\java>java EXP3
+Which shape:
+1) Rectangle
+2) Triangle
+3) Exit
+1
+Enter the length and breadth
+12.5
+66.3
+Area of the rectangle is828.75006
+Which shape:
+1) Rectangle
+2) Triangle
+3) Exit
+2
+Enter the base and height
+12.5
+11.2
+Area of the triangle is70.0
+Which shape:
+1) Rectangle
+2) Triangle
+3) Exit
+3
+
+-----------------------------
+POST -LAB Q)
+1.Differentiate between method overloading and method overriding with an example program
+of each.
+-i)Method Overloading:
+Code:
+class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+
+        int sum1 = calc.add(2, 3);               
+        int sum2 = calc.add(2, 3, 4);            
+        double sum3 = calc.add(2.5, 3.5);        
+
+        System.out.println("Sum 1: " + sum1);
+        System.out.println("Sum 2: " + sum2);
+        System.out.println("Sum 3: " + sum3);
+    }
+}
+Output:
+C:\JAVAAAAA>javac Main.java
+
+C:\JAVAAAAA>java Main
+Sum 1: 5
+Sum 2: 9
+Sum 3: 6.0
+
+Method overloading is a feature in Java that allows you to define multiple methods in the same class with the same name but with different parameter lists (number or types of parameters). The compiler determines which method to call based on the arguments passed during the method invocation.
+
+Example of method overloading:
+
+ii)Method Overriding:
+
+Method overriding is a concept in Java that allows a subclass to provide a specific implementation of a method that is already defined in its superclass. It is used to achieve runtime polymorphism. In method overriding, the method in the subclass has the same name, return type, and parameters as the method in the superclass.
+
+Example of method overriding:
+Code:
+class Animal {
+    void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myAnimal = new Dog(); // Create an instance of Dog, but reference it as an Animal
+        myAnimal.makeSound(); // Calls the overridden method in Dog
+    }
+}
+Output:
+C:\JAVAAAAA>javac Main.java
+
+C:\JAVAAAAA>java Main
+Dog barks
+
+
+2. Explain the following uses of the final keyword with an example of each
+a) To create a named constant
+-In Java, you can use the final keyword to create a named constant, which is a variable whose value cannot be changed once it is assigned. This is often used for values that should remain constant throughout the program.
+
+Example:
+public class Constants {
+    // Declare a constant using the final keyword
+    public static final double PI = 3.14159265359;
+
+    public static void main(String[] args) {
+        System.out.println("The value of PI is: " + Constants.PI);
+        // Constants.PI = 3.14; // This line would result in a compilation error
+    }
+}
+Output:
+C:\JAVAAAAA>javac Constants.java
+
+C:\JAVAAAAA>java Constants
+The value of PI is: 3.14159265359
+
+b) To prevent a method from being overridden
+-You can use the final keyword to prevent a method in a superclass from being overridden by subclasses. This is useful when you want to ensure that a particular method's behavior remains consistent across all subclasses.
+
+Example:
+class Parent {
+    // This method cannot be overridden by subclasses
+    final void displayMessage() {
+        System.out.println("This is a final method.");
+    }
+}
+
+class Child extends Parent {
+    // Attempting to override the final method will result in a compilation error
+    // void displayMessage() {
+    //     System.out.println("This is a subclass method.");
+    // }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent parent = new Parent();
+        parent.displayMessage();
+
+        Child child = new Child();
+        child.displayMessage(); // This will call the parent's final method
+    }
+}
+Output:
+C:\JAVAAAAA>javac Main.java
+
+C:\JAVAAAAA>java Main
+This is a final method.
+This is a final method.
+
+
+c) To prevent a class from being inherited
+-You can use the final keyword to prevent a class from being extended or inherited by other classes. When a class is marked as final, it cannot be used as a superclass.
+
+Example:
+final class FinalClass {
+    // Class implementation
+}
+
+// Attempting to extend a final class will result in a compilation error
+// class SubClass extends FinalClass {
+//     // Subclass implementation
+// }
+
+
+Conclusion:
+We have learnt different concepts of OOP from this experiment such as inheritance and its types,abstract classes and methods.

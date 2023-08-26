@@ -1,0 +1,184 @@
+Code :
+
+/*Write a program to create an array of the objects of class student.
+The class should have field members name, id,total marks and marks in three subjects namely JAVA, DSA, DBMS.
+Accept information of ‘n’ students and display them in tabular form in descending order of total marks obtained by student */
+
+import java.util.Scanner;
+
+public class Class
+{
+    public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the no.of Students : ");
+        int n=in.nextInt();
+
+        Student[] Students= new Student[n];
+        for (int i = 0; i < Students.length; i++) {
+            in.nextLine();
+            System.out.println("Student no" +(i+1)+":");
+            System.out.println("Enter name:");
+            String name=in.nextLine();
+            System.out.println("Enter ID:");
+            int id=in.nextInt();
+            System.out.println("Enter marks in JAVA");
+            Float marks_JAVA=in.nextFloat();
+            System.out.println("Enter marks in DSA");
+            Float marks_DSA=in.nextFloat();
+            System.out.println("Enter marks in DBMS");
+            Float marks_DBMS=in.nextFloat();
+
+            Students[i]=new Student(name,id,marks_JAVA,marks_DSA,marks_DBMS);
+
+        }
+        for (int i = 0; i < Students.length-1; i++) 
+        {
+            for (int j = i+1; j < Students.length; j++) 
+            {
+                if(Students[i].total_marks<Students[j].total_marks)
+                {
+                    Student temp=Students[j];
+                    Students[j]=Students[i];
+                    Students[i]=temp;
+
+
+                }
+            }
+        }
+        System.out.println("--------------------------------------------------");
+        for (int i = 0; i < Students.length; i++) {
+            System.out.println("Name of the student             | "+Students[i].name);
+            System.out.println("ID of the student               | "+Students[i].id);
+            System.out.println("Marks of the student in java    | "+Students[i].marks_JAVA);
+            System.out.println("Marks of the student in DSA     | "+Students[i].marks_DSA);
+            System.out.println("Marks of the student in DBMS    | "+Students[i].marks_DBMS);
+            System.out.println("Total marks of the student      | "+Students[i].total_marks);
+            System.out.println("--------------------------------------------------");
+        }
+    }
+
+}
+class Student{
+    String name;
+    int id;
+    Float total_marks;
+    Float marks_JAVA;
+    Float marks_DSA;
+    Float marks_DBMS;
+
+
+    Student(String name,int id,Float marks_JAVA,Float marks_DSA,Float marks_DBMS)
+    {
+        this.name = name;
+        this.id = id;
+        this.marks_JAVA = marks_JAVA;
+        this.marks_DSA = marks_DSA;
+        this.marks_DBMS = marks_DBMS;
+        this.total_marks = marks_DSA + marks_DBMS + marks_JAVA;
+
+    }
+
+}
+
+Output:
+
+C:\JAVAAAAA>javac Class.java
+
+C:\JAVAAAAA>java Class
+Enter the no.of Students :
+3
+Student no1:
+Enter name:
+Pratham
+Enter ID:
+29
+Enter marks in JAVA
+70
+Enter marks in DSA
+15
+Enter marks in DBMS
+35
+Student no2:
+Enter name:
+Varnika
+Enter ID:
+30
+Enter marks in JAVA
+99
+Enter marks in DSA
+40
+Enter marks in DBMS
+0
+Student no3:
+Enter name:
+Harsh
+Enter ID:
+31
+Enter marks in JAVA
+60
+Enter marks in DSA
+60
+Enter marks in DBMS
+50
+--------------------------------------------------
+Name of the student             | Harsh
+ID of the student               | 31
+Marks of the student in java    | 60.0
+Marks of the student in DSA     | 60.0
+Marks of the student in DBMS    | 50.0
+Total marks of the student      | 170.0
+--------------------------------------------------
+Name of the student             | Varnika
+ID of the student               | 30
+Marks of the student in java    | 99.0
+Marks of the student in DSA     | 40.0
+Marks of the student in DBMS    | 0.0
+Total marks of the student      | 139.0
+--------------------------------------------------
+Name of the student             | Pratham
+ID of the student               | 29
+Marks of the student in java    | 70.0
+Marks of the student in DSA     | 15.0
+Marks of the student in DBMS    | 35.0
+Total marks of the student      | 120.0
+--------------------------------------------------
+
+
+
+
+Question 1) Explain jagged arrays.
+-->A jagged array in Java is a collection of arrays, each of which might have a varied length. A jagged array allows you to have variable-length sub-arrays, in contrast to a multi-dimensional array, where every row has the same number of columns. When working with data structures that don't have a standard rectangular shape, this can be helpful.
+
+Here is an illustration of how a jagged array is made and used in Java:
+
+Code:
+public class JaggedArray {
+    public static void main(String[] args) {
+        int[][] jaggedArray = new int[3][];
+        jaggedArray[0] = new int[] { 1, 2, 3 };
+        jaggedArray[1] = new int[] { 4, 5 };
+        jaggedArray[2] = new int[] { 6, 7, 8, 9 };
+        
+        System.out.println(jaggedArray[0][0]); 
+        System.out.println(jaggedArray[1][1]); 
+        System.out.println(jaggedArray[2][2]); 
+        
+        System.out.println(jaggedArray[0].length); 
+        System.out.println(jaggedArray[1].length); 
+        System.out.println(jaggedArray[2].length); 
+}
+}
+
+Output:
+C:\JAVAAAAA>javac JaggedArray.java
+
+C:\JAVAAAAA>java JaggedArray
+1
+5
+8
+3
+2
+4
+
+Conclusion: We learned how to add objects to an array, sort the array, and print it in this experiment.
